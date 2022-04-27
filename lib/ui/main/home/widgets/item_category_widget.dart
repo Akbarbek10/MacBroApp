@@ -5,7 +5,8 @@ class ItemCategoryWidget extends StatelessWidget {
   final String? name;
   final String? image;
 
-  const ItemCategoryWidget({Key? key, required this.name, this.image}) : super(key: key);
+  const ItemCategoryWidget({Key? key, required this.name, this.image})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,20 @@ class ItemCategoryWidget extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w,vertical: 16.h),
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/png/$image"),
-            SizedBox(height: 16.h,),
+            // Image.asset("assets/png/$image"),
+            Container(
+
+              width: 102.w,
+              height: 96.h,
+              child: image!.isNotEmpty?Image.network("$image"):Image.asset("assets/png/macbro.png"),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
             Text(
               "$name",
               style: TextStyle(
@@ -30,8 +39,7 @@ class ItemCategoryWidget extends StatelessWidget {
                   fontSize: 17.sp,
                   fontFamily: "Sf_Pro",
                   letterSpacing: -0.41.w,
-                  fontWeight: FontWeight.w700
-              ),
+                  fontWeight: FontWeight.w700),
             ),
           ],
         ),
