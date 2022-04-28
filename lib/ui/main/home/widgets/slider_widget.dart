@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../models/BannerModel.dart';
+import 'package:macbro_app/network/models/ResponseBanner.dart';
 
 class SliderWidget extends StatelessWidget {
-  final Banners banner;
-  final int index;
+  final MyBanner banner;
 
   const SliderWidget({
     Key? key,
     required this.banner,
-    required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-
       padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 22.h),
-
       width: 343.w,
       height: 180.h,
       decoration: BoxDecoration(

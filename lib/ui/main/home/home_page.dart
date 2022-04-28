@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/controllers/banner_controller.dart';
 import 'package:macbro_app/controllers/category_controller.dart';
-import 'package:macbro_app/models/product_model.dart';
-import 'package:macbro_app/ui/main/home/widgets/item_category_widget.dart';
-import 'package:macbro_app/ui/main/home/widgets/item_offer_widget.dart';
-import 'package:macbro_app/ui/main/home/widgets/item_widget.dart';
+import 'package:macbro_app/controllers/product_section_controller.dart';
+import 'package:macbro_app/ui/main/home/widgets/banner_indicator.dart';
 import 'package:macbro_app/ui/main/home/widgets/slider_widget.dart';
-import 'package:macbro_app/models/slider_model.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'widgets/item_category.dart';
+import 'widgets/product_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,69 +20,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final productList = [
-    ProductModel(
-        name: "Imac",
-        price: "10 599 999",
-        image: "imac.png",
-        isFavourite: false,
-        discount: 15),
-    ProductModel(
-        name: "Iphone",
-        price: "8 3999 999",
-        image: "iphone.png",
-        isFavourite: false,
-        discount: 25),
-    ProductModel(
-        name: "Imac",
-        price: "10 599 999",
-        image: "imac.png",
-        isFavourite: false,
-        discount: 15),
-    ProductModel(
-        name: "Iphone",
-        price: "8 3999 999",
-        image: "iphone.png",
-        isFavourite: false,
-        discount: 25),
-    ProductModel(
-        name: "Imac",
-        price: "10 599 999",
-        image: "imac.png",
-        isFavourite: false,
-        discount: 15),
-    ProductModel(
-        name: "Iphone",
-        price: "8 3999 999",
-        image: "iphone.png",
-        isFavourite: false,
-        discount: 25),
-    ProductModel(
-        name: "Imac",
-        price: "10 599 999",
-        image: "imac.png",
-        isFavourite: false,
-        discount: 15),
-    ProductModel(
-        name: "Iphone",
-        price: "8 3999 999",
-        image: "iphone.png",
-        isFavourite: false,
-        discount: 25),
-  ];
-
-  final List<SliderModel> slidersList = [
-    SliderModel(
-        "Взгляни на мир глазами Iphone", "Iphone 11 pro", "iphones.png"),
-    SliderModel(
-        "Взгляни на мир глазами Iphone", "Iphone 12 pro", "iphones.png"),
-    SliderModel(
-        "Взгляни на мир глазами Iphone", "Iphone 13 pro", "iphones.png"),
-  ];
-  int activeIndex = 0;
-
-  final CategoryController categoryController = Get.put(CategoryController());
   final BannerController bannerController = Get.put(BannerController());
+  final CategoryController categoryController = Get.put(CategoryController());
+  final ProductSectionController sectionController =
+      Get.put(ProductSectionController());
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +31,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFF9F9FD),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,67 +39,81 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 16.h,
                 ),
-                Obx(() => CarouselSlider.builder(
-                    itemCount: bannerController.bannerList.length,
-                    itemBuilder: (context, index, realIndex) {
-                      return SliderWidget(
-                          banner: bannerController.bannerList[index], index: index);
-                    },
-                    options: CarouselOptions(
-                        autoPlay: true,
-                        height: 180.h,
-                        enlargeCenterPage: true,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            activeIndex = index;
-                          });
-                        }))),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Text(
-                        "New",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Sf_Pro",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 22.sp,
-                            letterSpacing: 0.35.w),
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward))
-                  ],
+                Obx(() {
+                  if (bannerController.isLoading.value) {
+                    return Center(
+                      child: Text("Загрузка..."),
+                    );
+                  } else {
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Positioned(
+                          child: CarouselSlider.builder(
+                              itemCount: bannerController.bannerList.length,
+                              itemBuilder: (context, index, realIndex) {
+                                return SliderWidget(
+                                    banner: bannerController.bannerList[index]);
+                              },
+                              options: CarouselOptions(
+                                  autoPlay: true,
+                                  height: 180.h,
+                                  enlargeCenterPage: true,
+                                  onPageChanged: (index, reason) {
+                                    bannerController
+                                        .bannerIndicatorIndex.value = index;
+                                  })),
+                        ),
+                        Positioned(
+                          child: BannerIndicator(
+                            activeIndex:
+                                bannerController.bannerIndicatorIndex.value,
+                            length: bannerController.bannerList.length,
+                          ),
+                          bottom: 8.h,
+                        ),
+                      ],
+                    );
+                  }
+                }),
+                SizedBox(
+                  height: 40.h,
                 ),
                 Container(
-                  height: 200,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: productList.length,
-                    // itemCount: productController.bannerList.length,
-                    itemBuilder: (context, index) {
-                      return ItemWidget(
-                        name: productList[index].name,
-                        image: productList[index].image,
-                        price: productList[index].price,
+                  child: Obx(() {
+                    if (bannerController.isLoading.value) {
+                      return Center(
+                        child: Text("Загрузка..."),
                       );
-                    },
-                  ),
+                    }
+                    else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: sectionController.productSectionList.length,
+                        itemBuilder: (context, index) {
+                          return ProductSectionWidget(
+                            title: sectionController
+                                .productSectionList[index].title,
+                            productList: sectionController
+                                .productSectionList[index].products!,
+                          );
+                        },
+                      );
+                    }
+                  }),
                 ),
                 SizedBox(
                   height: 25.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Text(
-                        "Special offers",
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Категории",
                         style: TextStyle(
                             color: Colors.black,
                             fontFamily: "Sf_Pro",
@@ -164,64 +121,42 @@ class _HomePageState extends State<HomePage> {
                             fontSize: 22.sp,
                             letterSpacing: 0.35.w),
                       ),
-                    ),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_forward))
-                  ],
-                ),
-                Container(
-                  height: 200,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: productList.length,
-                    shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    itemBuilder: (context, index) {
-                      return ItemOfferWidget(
-                        name: productList[index].name,
-                        price: productList[index].price,
-                        image: productList[index].image,
-                        discount: productList[index].discount,
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 32.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Text(
-                    "Categories",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: "Sf_Pro",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22.sp,
-                        letterSpacing: 0.35.w),
-                  ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 24.h),
-                  child: Obx(() => GridView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: categoryController.categoryList.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12.w,
-                            mainAxisSpacing: 12.h),
-                        itemBuilder: (context, index) {
-                          return ItemCategoryWidget(
-                            name: categoryController.categoryList[index].name,
-                            image: categoryController.categoryList[index].image,
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Obx(() {
+                        if (categoryController.isLoading.value) {
+                          return Center(
+                            child: Text("Загрузка..."),
                           );
-                        },
-                      )),
+                        } else {
+                          return Container(
+                            padding: EdgeInsets.only(bottom: 24.h),
+                            child: Obx(() => GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount:
+                                      categoryController.categoryList.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 12.w,
+                                          mainAxisSpacing: 12.h),
+                                  itemBuilder: (context, index) {
+                                    return ItemCategoryWidget(
+                                      name: categoryController
+                                          .categoryList[index].name,
+                                      image: categoryController
+                                          .categoryList[index].image,
+                                    );
+                                  },
+                                )),
+                          );
+                        }
+                      }),
+                    ],
+                  ),
                 ),
               ],
             ),

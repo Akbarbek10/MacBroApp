@@ -1,9 +1,11 @@
 import 'package:get/state_manager.dart';
-import 'package:macbro_app/models/BannerModel.dart';
-import 'package:macbro_app/services/remote_services.dart';
+import 'package:macbro_app/service/remote_services.dart';
+import 'package:macbro_app/network/models/ResponseBanner.dart';
 
 class BannerController extends GetxController {
-  var bannerList = <Banners>[].obs;
+  var isLoading = true.obs;
+  var bannerIndicatorIndex = 0.obs;
+  var bannerList = <MyBanner>[].obs;
 
   @override
   void onInit() {
@@ -12,9 +14,21 @@ class BannerController extends GetxController {
   }
 
   void fetchBanners() async {
-    var bannerList = await RemoteServices.fetchBanners();
-    if (bannerList != null) {
-      this.bannerList.value = bannerList;
+    try{
+      isLoading(true);
+      var bannerList = await RemoteServices.fetchBanners();
+      if (bannerList != null) {
+        var newBannerList = [...bannerList];
+        bannerList.forEach((banner) {
+          if(banner.type.toString() != "image"){
+            newBannerList.remove(banner);
+          }
+        });
+        this.bannerList.value = newBannerList;
+      }
+    }finally{
+      isLoading(false);
     }
   }
+
 }
