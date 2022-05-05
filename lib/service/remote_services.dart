@@ -1,38 +1,29 @@
 import 'package:dio/dio.dart';
-import 'package:macbro_app/network/apis.dart';
-import 'package:macbro_app/network/models/ResponseCategory.dart';
+import 'package:macbro_app/data/models/response_banner.dart';
+import 'package:macbro_app/data/providers/api_client.dart';
+import '../data/models/response_category.dart';
+import '../data/models/response_product_section.dart';
 
-import '../network/models/ResponseBanner.dart';
-import '../network/models/ResponseProductSection.dart';
 
 class RemoteServices {
   static Future<List<MyBanner>?> fetchBanners() async {
-    final banner = ApiBanner(Dio(BaseOptions(contentType: "application/json")));
-    var result = await banner.getBanners();
+    final banner = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    var responseData = await banner.getBanners();
 
-    if(result!=null){
-      return result.banners;
-    }
-    return null;
+    return responseData.banners;
   }
 
   static Future<List<MyCategory>?> fetchCategories() async {
-    final category = ApiBanner(Dio(BaseOptions(contentType: "application/json")));
-    var result = await category.getCategories();
+    final category = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    var responseData = await category.getCategories();
 
-    if(result!=null){
-      return result.categories;
-    }
-    return null;
+    return responseData.categories;
   }
 
   static Future<List<ProductSection>?> fetchProductSections() async {
-    final productSection = ApiBanner(Dio(BaseOptions(contentType: "application/json")));
-    var result = await productSection.getProductSections();
+    final productSection = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    var responseData = await productSection.getProductSections();
 
-    if(result!=null){
-      return result.featuredLists;
-    }
-    return null;
+    return responseData.featuredLists;
   }
 }

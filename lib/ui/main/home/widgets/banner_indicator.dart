@@ -16,7 +16,7 @@ class BannerIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSmoothIndicator(
         effect: ScrollingDotsEffect(
-            dotWidth: 5.w, dotHeight: 5.w, activeDotColor: Color(0xFF021468)),
+            dotWidth: 5.w, dotHeight: 5.w, activeDotColor: const Color(0xFF021468)),
         activeIndex: activeIndex,
         count: length);
   }

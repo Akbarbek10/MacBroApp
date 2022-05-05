@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:macbro_app/ui/main/main_page.dart';
-import 'package:macbro_app/ui/splash/splash_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:macbro_app/data/hive/product_hive_model.dart';
+import 'package:macbro_app/routes/app_pages.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(ProductHiveModelAdapter());
+  await Hive.openBox<ProductHiveModel>("products");
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(375, 870),
+      designSize: const Size(375, 870),
       builder: (_) {
         return GetMaterialApp(
           title: 'Title',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: "/main_page",
-          routes: {
-            "/main_page": (context) => MainPage(),
-            "/splash_page": (context) => SplashPage(),
-          },
+          getPages: AppPages.pages,
         );
       },
     );

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'apis.dart';
+part of 'api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps
 
-class _ApiBanner implements ApiBanner {
-  _ApiBanner(this._dio, {this.baseUrl}) {
+class _ApiClient implements ApiClient {
+  _ApiClient(this._dio, {this.baseUrl}) {
     baseUrl ??= 'https://api.client.macbro.uz/v1/';
   }
 

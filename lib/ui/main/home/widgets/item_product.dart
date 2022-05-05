@@ -1,29 +1,37 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:macbro_app/base/base_functions.dart';
+import 'package:macbro_app/ui/main/widgets/like_btn.dart';
 
-class ItemNewWidget extends StatelessWidget {
+class ItemProductWidget extends StatelessWidget {
+  final String? id;
   final String? name;
   final String? image;
-  final String? price;
+  final int? price;
 
-  const ItemNewWidget({
+  const ItemProductWidget({
     Key? key,
+    required this.id,
     required this.name,
     required this.price,
-    this.image,
+    required this.image,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int priceInSum = price! * 11525;
+
     return Container(
+      width: 152.w,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 152.w,
               height: 162.h,
+              width: 152.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
                 color: Colors.white,
@@ -32,28 +40,22 @@ class ItemNewWidget extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Positioned(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 24.h, horizontal: 14.w),
-                        child: Image.network("$image"),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: 24.h, horizontal: 14.w),
+                      child: CachedNetworkImage(
+                        imageUrl: "$image",
                       ),
                     ),
                   ),
                   Positioned(
                     top: 8.w,
                     right: 8.w,
-                    child: Container(
-                      width: 24.w,
-                      height: 24.w,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Color(0xFFF5F5F5)),
-                      child: Padding(
-                        padding: EdgeInsets.all(6.0.w),
-                        child: Icon(Icons.favorite,
-                            color: Color(0xFFABABAB), size: 12.w),
-                      ),
+                    child: LikeBtnWidget(
+                      id: id,
+                      name: name,
+                      image: image,
+                      price: price,
                     ),
                   ),
                 ],
@@ -63,30 +65,28 @@ class ItemNewWidget extends StatelessWidget {
               height: 8.h,
             ),
             Container(
-              width: 152.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "$name",
-                    maxLines: 2,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 17.sp,
                         overflow: TextOverflow.ellipsis,
                         fontFamily: "Sf_Pro",
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
                     height: 4.h,
                   ),
                   Text(
-                    "от $price сум",
+                    BaseFunctions.moneyFormatSymbol(priceInSum) + " сум",
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Color(0xFF007AFF),
                       fontFamily: "Sf_Pro",
                       letterSpacing: -0.24.w,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w600,
                       fontSize: 15.sp,
                     ),
                   ),
