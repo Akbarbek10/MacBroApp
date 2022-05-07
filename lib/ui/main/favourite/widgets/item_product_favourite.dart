@@ -21,7 +21,7 @@ class ItemProductFavouriteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int priceInSum = price ?? 0 * 11525;
+    int priceInSum = (price ?? 0 )* 11525;
 
     return Container(
       width: 164.w,
