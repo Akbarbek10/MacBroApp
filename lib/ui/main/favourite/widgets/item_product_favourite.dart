@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:macbro_app/base/base_functions.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/ui/main/widgets/like_btn.dart';
 
 class ItemProductFavouriteWidget extends StatelessWidget {
@@ -72,7 +73,7 @@ class ItemProductFavouriteWidget extends StatelessWidget {
                     color: Colors.black,
                     fontSize: 15.sp,
                     overflow: TextOverflow.ellipsis,
-                    fontFamily: "Sf_Pro",
+                    fontFamily: AppUtils.kFontFamily,
                     fontWeight: FontWeight.w600),
               ),
               SizedBox(
@@ -82,7 +83,7 @@ class ItemProductFavouriteWidget extends StatelessWidget {
                 BaseFunctions.moneyFormatSymbol(priceInSum) + " сум",
                 style: TextStyle(
                   color: const Color(0xFF007AFF),
-                  fontFamily: "Sf_Pro",
+                  fontFamily: AppUtils.kFontFamily,
                   letterSpacing: -0.24.w,
                   fontWeight: FontWeight.w400,
                   fontSize: 15.sp,

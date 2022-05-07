@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:macbro_app/data/models/response_product.dart';
 import 'package:retrofit/http.dart';
 
 import '../models/response_banner.dart';
@@ -12,6 +14,7 @@ class ApiConstants {
   static const String banners = '/banner';
   static const String categories = '/category';
   static const String productSections = '/featured-list';
+  static const String product = '/product';
 }
 
 @RestApi(baseUrl: ApiConstants.baseUrl)
@@ -27,4 +30,11 @@ abstract class ApiClient {
   @GET(ApiConstants.productSections)
   Future<ResponseProductSection> getProductSections();
 
+  @GET(ApiConstants.product)
+  Future<ResponseProduct> getProducts(
+    @Query('category') String categoryId,
+    @Query('lang') String lang,
+    @Query('limit') int limit,
+    @Query('page') int page,
+  );
 }

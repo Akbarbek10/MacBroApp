@@ -4,7 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/controllers/home_controller.dart';
 import 'package:macbro_app/core/theme/app_colors.dart';
-import 'package:macbro_app/ui/main/home/builders/category_builder.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+import 'package:macbro_app/ui/main/home/builders/main_category_builder.dart';
 import 'package:macbro_app/ui/main/home/builders/product_section_builder.dart';
 import 'package:macbro_app/ui/main/home/builders/banner_slider_builder.dart';
 
@@ -33,7 +34,7 @@ class HomePage extends GetView<HomeController> {
               ),
               hintText: 'Поиск',
               hintStyle: const TextStyle(
-                fontFamily: "Sf_Pro",
+                fontFamily: AppUtils.kFontFamily,
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
@@ -84,7 +85,7 @@ class HomePage extends GetView<HomeController> {
                       "Категории",
                       style: TextStyle(
                           color: Colors.black,
-                          fontFamily: "Sf_Pro",
+                          fontFamily: AppUtils.kFontFamily,
                           fontWeight: FontWeight.w700,
                           fontSize: 22.sp,
                           letterSpacing: 0.35.w),
@@ -92,7 +93,7 @@ class HomePage extends GetView<HomeController> {
                     SizedBox(
                       height: 16.h,
                     ),
-                    const CategoryBuilder(),
+                    const MainCategoryBuilder(),
                   ],
                 ),
               ),

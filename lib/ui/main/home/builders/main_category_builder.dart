@@ -6,8 +6,8 @@ import '../widgets/item_category.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../widgets/item_category_shimmer.dart';
 
-class CategoryBuilder extends StatelessWidget {
-  const CategoryBuilder({
+class MainCategoryBuilder extends StatelessWidget {
+  const MainCategoryBuilder({
     Key? key,
   }) : super(key: key);
 
@@ -29,7 +29,8 @@ class CategoryBuilder extends StatelessWidget {
               return const ItemShimmerCategoryWidget();
             },
           );
-        } else {
+        }
+        else {
           return StaggeredGridView.countBuilder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

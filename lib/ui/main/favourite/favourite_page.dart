@@ -5,31 +5,19 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:macbro_app/controllers/home_controller.dart';
 import 'package:macbro_app/core/theme/app_colors.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/data/hive/boxes.dart';
 import 'package:macbro_app/data/hive/product_hive_model.dart';
 import 'package:macbro_app/ui/main/favourite/widgets/item_product_favourite.dart';
 import 'package:macbro_app/ui/main/widgets/empty_page.dart';
+import 'package:macbro_app/ui/main/widgets/my_app_bar.dart';
 
 class FavouritePage extends GetView<HomeController>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Text(
-          "Избранные",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              letterSpacing: 0.38.w,
-              fontFamily: "Sf_Pro",
-              fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: MyAppBar("Избранные"),
       body: SafeArea(
         child: ValueListenableBuilder<Box<ProductHiveModel>>(
             valueListenable: Boxes.getProducts().listenable(),
@@ -39,6 +27,7 @@ class FavouritePage extends GetView<HomeController>  {
                 return const EmptyPage();
               } else {
                 return StaggeredGridView.countBuilder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: products.length,
                   crossAxisCount: 2,
                   padding:

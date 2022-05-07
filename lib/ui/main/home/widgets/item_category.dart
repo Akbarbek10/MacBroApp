@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/data/models/response_category.dart';
 import 'package:macbro_app/ui/main/home/sub_pages/sub_category_page.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+
 
 class ItemCategoryWidget extends StatelessWidget {
   final String? name;
@@ -58,7 +60,7 @@ class ItemCategoryWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       color: Colors.black,
                       fontSize: 17.sp,
-                      fontFamily: "Sf_Pro",
+                      fontFamily: AppUtils.kFontFamily,
                       letterSpacing: -0.41.w,
                       fontWeight: FontWeight.w600),
                 ),

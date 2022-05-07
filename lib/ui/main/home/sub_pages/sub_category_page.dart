@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+
 import 'package:macbro_app/controllers/home_controller.dart';
 import 'package:macbro_app/data/models/response_category.dart';
-import 'package:macbro_app/ui/main/home/sub_pages/item_sub_category.dart';
+import 'package:macbro_app/ui/main/home/sub_pages/pages/widgets/item_sub_category.dart';
 import 'package:macbro_app/ui/main/widgets/empty_page.dart';
 
 class SubCategoryBuilder extends GetView<HomeController> {
@@ -14,8 +16,10 @@ class SubCategoryBuilder extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Children>? subCategoryList = Get.arguments[0];
-    String title = Get.arguments[1] ?? [];
+    var data = Get.arguments;
+    List<Children>? subCategoryList = data[0] ?? [];
+    String title = data[1] ?? "";
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -31,7 +35,7 @@ class SubCategoryBuilder extends GetView<HomeController> {
               color: Colors.black,
               fontSize: 20.sp,
               letterSpacing: 0.38.w,
-              fontFamily: "Sf_Pro",
+              fontFamily: AppUtils.kFontFamily,
               fontWeight: FontWeight.w600),
         ),
       ),
@@ -47,6 +51,7 @@ class SubCategoryBuilder extends GetView<HomeController> {
         mainAxisSpacing: 12.h,
         itemBuilder: (BuildContext context, int index) {
           return ItemSubCategoryWidget(
+              id: subCategoryList[index].id,
               name: subCategoryList[index].name,
               image: subCategoryList[index].image,
           );

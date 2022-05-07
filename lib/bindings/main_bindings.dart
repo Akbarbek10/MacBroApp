@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:macbro_app/controllers/bottom_menu_controller.dart';
+import 'package:macbro_app/controllers/data_controller.dart';
 import 'package:macbro_app/controllers/home_controller.dart';
 
 class MainBindings extends Bindings{
@@ -7,6 +8,7 @@ class MainBindings extends Bindings{
   void dependencies() {
     Get.lazyPut<BottomMenuController>(() => BottomMenuController());
     Get.lazyPut<HomeController>(() => HomeController());
+    Get.lazyPut<DataController>(() => DataController() ,fenix: true);
   }
 
 }

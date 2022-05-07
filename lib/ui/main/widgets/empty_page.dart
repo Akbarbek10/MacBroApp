@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:macbro_app/core/theme/app_colors.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+
 
 class EmptyPage extends StatelessWidget {
   const EmptyPage({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class EmptyPage extends StatelessWidget {
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 16.sp,
-                fontFamily: "Sf_Pro",
+                fontFamily: AppUtils.kFontFamily,
                 fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 40.h),

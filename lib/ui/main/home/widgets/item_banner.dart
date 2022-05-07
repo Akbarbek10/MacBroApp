@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:macbro_app/data/models/response_banner.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+
 import 'package:transparent_image/transparent_image.dart';
 
 class ItemBannerWidget extends StatelessWidget {
@@ -43,7 +45,7 @@ class ItemBannerWidget extends StatelessWidget {
                       "${banner.title}",
                       style: TextStyle(
                           color: Colors.white,
-                          fontFamily: "Sf_Pro",
+                          fontFamily: AppUtils.kFontFamily,
                           fontSize: 28.sp,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.34.w),

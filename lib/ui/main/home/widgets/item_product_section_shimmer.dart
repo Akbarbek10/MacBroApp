@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/ui/main/home/widgets/item_product_shimmer.dart';
 
 class ProductShimmerSectionWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ class ProductShimmerSectionWidget extends StatelessWidget {
                 "$title",
                 style: TextStyle(
                     color: Colors.black,
-                    fontFamily: "Sf_Pro",
+                    fontFamily: AppUtils.kFontFamily,
                     fontWeight: FontWeight.w700,
                     fontSize: 22.sp,
                     letterSpacing: 0.35.w),

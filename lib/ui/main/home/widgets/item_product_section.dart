@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:macbro_app/core/theme/app_utils.dart';
+import 'package:get/get.dart';
 import 'package:macbro_app/data/models/response_product_section.dart';
+import 'package:macbro_app/ui/main/home/builders/products_in_single_section.dart';
 import 'package:macbro_app/ui/main/home/widgets/item_product.dart';
 
 class ProductSectionWidget extends StatelessWidget {
@@ -28,13 +31,18 @@ class ProductSectionWidget extends StatelessWidget {
                 "$title",
                 style: TextStyle(
                     color: Colors.black,
-                    fontFamily: "Sf_Pro",
+                    fontFamily: AppUtils.kFontFamily,
                     fontWeight: FontWeight.w700,
                     fontSize: 22.sp,
                     letterSpacing: 0.35.w),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(AllProductsInSectionPage(),
+                      arguments: [productList, title],
+                      transition: Transition.rightToLeft,
+                      duration: const Duration(milliseconds: 150));
+                },
                 icon: SvgPicture.asset(
                   'assets/svg/ic_arrow_right.svg',
                 ),
