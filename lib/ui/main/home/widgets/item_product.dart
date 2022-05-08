@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/base/base_functions.dart';
+import 'package:macbro_app/routes/app_routes.dart';
 import 'package:macbro_app/ui/main/home/sub_pages/pages/product_details_page.dart';
 import 'package:macbro_app/ui/main/widgets/like_btn.dart';
 
@@ -25,7 +26,7 @@ class ItemProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     int priceInSum = price! * 11525;
 
-    return Container(
+    return SizedBox(
       width: 152.w,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.w),
@@ -34,7 +35,7 @@ class ItemProductWidget extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: (){
-                Get.to(ProductDetailsPage(),transition: Transition.rightToLeft,duration: const Duration(milliseconds: 150));
+                Get.toNamed(AppRoutes.productDetails);
               },
               child: Container(
                 height: 162.h,
@@ -72,34 +73,32 @@ class ItemProductWidget extends StatelessWidget {
             SizedBox(
               height: 8.h,
             ),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "$name",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17.sp,
-                        overflow: TextOverflow.ellipsis,
-                        fontFamily: AppUtils.kFontFamily,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    BaseFunctions.moneyFormatSymbol(priceInSum) + " сум",
-                    style: TextStyle(
-                      color: Color(0xFF007AFF),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "$name",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17.sp,
+                      overflow: TextOverflow.ellipsis,
                       fontFamily: AppUtils.kFontFamily,
-                      letterSpacing: -0.24.w,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15.sp,
-                    ),
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Text(
+                  BaseFunctions.moneyFormatSymbol(priceInSum) + " сум",
+                  style: TextStyle(
+                    color: const Color(0xFF007AFF),
+                    fontFamily: AppUtils.kFontFamily,
+                    letterSpacing: -0.24.w,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15.sp,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

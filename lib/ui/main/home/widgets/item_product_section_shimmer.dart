@@ -40,7 +40,7 @@ class ProductShimmerSectionWidget extends StatelessWidget {
             ],
           ),
         ),
-        Container(
+        SizedBox(
           height: 250.h,
           child: ListView.builder(
             shrinkWrap: true,

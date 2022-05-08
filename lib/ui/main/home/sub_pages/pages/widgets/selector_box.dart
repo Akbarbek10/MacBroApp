@@ -18,7 +18,7 @@ class SelectorBoxWidget extends StatelessWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text("256 GB"),
             ],
           ),

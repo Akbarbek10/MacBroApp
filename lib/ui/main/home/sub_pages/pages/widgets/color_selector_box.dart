@@ -25,7 +25,7 @@ class ColorSelectorBoxWidget extends StatelessWidget {
                 color: Colors.red,
               ),
               SizedBox(height: 6.h,),
-              Text("name"),
+              const Text("name"),
             ],
           ),
         ),

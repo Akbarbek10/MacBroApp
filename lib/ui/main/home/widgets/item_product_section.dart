@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/data/models/response_product_section.dart';
+import 'package:macbro_app/routes/app_routes.dart';
 import 'package:macbro_app/ui/main/home/builders/products_in_single_section.dart';
 import 'package:macbro_app/ui/main/home/widgets/item_product.dart';
 
@@ -38,10 +39,7 @@ class ProductSectionWidget extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  Get.to(AllProductsInSectionPage(),
-                      arguments: [productList, title],
-                      transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 150));
+                  Get.toNamed(AppRoutes.allProductsInSection, arguments: [productList, title]);
                 },
                 icon: SvgPicture.asset(
                   'assets/svg/ic_arrow_right.svg',
@@ -50,7 +48,7 @@ class ProductSectionWidget extends StatelessWidget {
             ],
           ),
         ),
-        Container(
+        SizedBox(
           height: 250.h,
           child: ListView.builder(
             shrinkWrap: true,

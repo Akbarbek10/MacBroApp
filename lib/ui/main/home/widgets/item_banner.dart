@@ -20,7 +20,7 @@ class ItemBannerWidget extends StatelessWidget {
       height: 180.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
-        color: Color(0xFFEFEDEF),
+        color: const Color(0xFFEFEDEF),
       ),
       child: Stack(
         children: [

@@ -35,7 +35,7 @@ class ItemProductSubCategoryWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             height: 96.h,
             child: image != null
                 ? CachedNetworkImage(

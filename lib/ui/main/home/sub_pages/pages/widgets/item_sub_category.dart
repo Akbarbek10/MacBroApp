@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/core/theme/app_utils.dart';
-import 'package:macbro_app/ui/main/home/sub_pages/pages/limited_products_page.dart';
+import 'package:macbro_app/routes/app_routes.dart';
 
 class ItemSubCategoryWidget extends StatelessWidget {
   final String? id;
@@ -18,7 +18,7 @@ class ItemSubCategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap:(){
-        Get.to(const LimitedProductsPage(),arguments: [id,name],transition: Transition.rightToLeft,duration: const Duration(milliseconds: 150));
+        Get.toNamed(AppRoutes.products,arguments: [id,name]);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),

@@ -8,6 +8,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 
 class ProfilePage extends GetView<HomeController> {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

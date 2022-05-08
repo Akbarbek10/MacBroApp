@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:macbro_app/core/theme/app_utils.dart';
 
 class MyAppBar extends StatelessWidget with PreferredSizeWidget{
-  late String title;
+  final String title;
 
   MyAppBar(this.title);
 
@@ -17,7 +17,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget{
       backgroundColor: Colors.white,
       elevation: 0.5,
       title: Text(
-        "$title",
+        title,
         textAlign: TextAlign.center,
         style: TextStyle(
             color: Colors.black,

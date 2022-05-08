@@ -23,7 +23,7 @@ class ItemProductFavouriteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     int priceInSum = (price ?? 0 )* 11525;
 
-    return Container(
+    return SizedBox(
       width: 164.w,
       height: 246.h,
       child: Column(

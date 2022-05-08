@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/core/theme/app_colors.dart';
-import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/data/models/response_product_section.dart';
 import 'package:macbro_app/ui/main/favourite/widgets/item_product_favourite.dart';
 import 'package:macbro_app/ui/main/widgets/my_app_bar.dart';

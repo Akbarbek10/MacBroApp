@@ -12,14 +12,14 @@ class ItemShimmerBannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Shimmer.fromColors(
-        baseColor: AppColors.shimmer_baseColor,
-        highlightColor: AppColors.shimmer_highlightColor,
+        baseColor: AppColors.shimmerBaseColor,
+        highlightColor: AppColors.shimmerHighlightColor,
         child: Container(
           width: 343.w,
           height: 180.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
-            color: Color(0xFFEFEDEF),
+            color: const Color(0xFFEFEDEF),
           ),
         ),
       ),

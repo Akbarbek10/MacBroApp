@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:macbro_app/controllers/home_controller.dart';
 import 'package:macbro_app/core/theme/app_colors.dart';
-import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/data/hive/boxes.dart';
 import 'package:macbro_app/data/hive/product_hive_model.dart';
 import 'package:macbro_app/ui/main/favourite/widgets/item_product_favourite.dart';

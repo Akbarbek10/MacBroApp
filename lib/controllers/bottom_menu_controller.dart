@@ -1,7 +1,7 @@
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class BottomMenuController extends GetxController{
-  BottomMenu _bottomMenu = BottomMenu.HOME;
+  BottomMenu _bottomMenu = BottomMenu.home;
 
 
   void setMenu(BottomMenu menu){
@@ -14,8 +14,8 @@ class BottomMenuController extends GetxController{
 }
 
 enum BottomMenu{
-  HOME,
-  BASKET,
-  FAVOURITES,
-  PROFILE,
+  home,
+  basket,
+  favourites,
+  profile,
 }

@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:macbro_app/controllers/data_controller.dart';
+import 'package:macbro_app/controllers/all_products_controller.dart';
 import 'package:macbro_app/ui/main/favourite/widgets/item_product_favourite.dart';
-import 'package:macbro_app/core/theme/app_utils.dart';
 import 'package:macbro_app/ui/main/widgets/my_app_bar.dart';
 
 
-class AllProductsPage extends GetView<DataController> {
+class AllProductsPage extends GetView<AllProductsController> {
   const AllProductsPage({Key? key}) : super(key: key);
 
   @override
@@ -17,12 +16,15 @@ class AllProductsPage extends GetView<DataController> {
     var data = Get.arguments;
     final String id = data[0] ?? "";
     final String? name = data[1] ?? "";
-    controller.fetchAllProducts(id);
 
     return Scaffold(
       appBar: MyAppBar("$name"),
       body: SafeArea(
-        child: GetBuilder<DataController>(builder: (controller) {
+        child: GetBuilder<AllProductsController>(
+            initState:(_){
+              controller.fetchAllProducts(id);
+            },
+            builder: (controller) {
           if (controller.isLoading || controller.allProductList.isEmpty) {
             return const Center(
               child: SpinKitCircle(

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:macbro_app/data/models/response_product.dart';
 import 'package:retrofit/http.dart';
-
 import '../models/response_banner.dart';
 import '../models/response_category.dart';
 import '../models/response_product_section.dart';

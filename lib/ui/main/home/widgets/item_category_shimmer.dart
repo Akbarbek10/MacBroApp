@@ -11,12 +11,12 @@ class ItemShimmerCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 166.w,
       height: 196.h,
       child: Shimmer.fromColors(
-        baseColor: AppColors.shimmer_baseColor,
-        highlightColor: AppColors.shimmer_highlightColor,
+        baseColor: AppColors.shimmerBaseColor,
+        highlightColor: AppColors.shimmerHighlightColor,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),

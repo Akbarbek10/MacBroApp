@@ -8,9 +8,10 @@ import 'package:macbro_app/controllers/home_controller.dart';
 import 'package:macbro_app/data/models/response_category.dart';
 import 'package:macbro_app/ui/main/home/sub_pages/pages/widgets/item_sub_category.dart';
 import 'package:macbro_app/ui/main/widgets/empty_page.dart';
+import 'package:macbro_app/ui/main/widgets/my_app_bar.dart';
 
-class SubCategoryBuilder extends GetView<HomeController> {
-  const SubCategoryBuilder({
+class SubCategoryPage extends GetView<HomeController> {
+  const SubCategoryPage({
     Key? key,
   }) : super(key: key);
 
@@ -21,28 +22,12 @@ class SubCategoryBuilder extends GetView<HomeController> {
     String title = data[1] ?? "";
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: const IconThemeData(
-          color: Colors.black, //change your color here
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Text(
-          "$title",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              letterSpacing: 0.38.w,
-              fontFamily: AppUtils.kFontFamily,
-              fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: MyAppBar(title),
       body:subCategoryList!=null? SafeArea(
         child: StaggeredGridView.countBuilder(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemCount: subCategoryList.length,
         crossAxisCount: 2,

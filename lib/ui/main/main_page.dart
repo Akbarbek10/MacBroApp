@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:macbro_app/controllers/bottom_menu_controller.dart';
+import 'package:macbro_app/routes/app_routes.dart';
 import 'package:macbro_app/ui/main/favourite/favourite_page.dart';
 import 'package:macbro_app/ui/main/home/home_page.dart';
 import 'package:macbro_app/ui/main/profile/profile_page.dart';
@@ -32,7 +33,7 @@ class _MainPageState extends State<MainPage> {
             bottomNavigationBar: BottomNavigationBar(
               onTap: (position) {
                 if (position == 3) {
-                  Get.to(ProfilePage(),transition: Transition.rightToLeft,duration: const Duration(milliseconds: 150));
+                  Get.toNamed(AppRoutes.profile);
                 } else {
                   controller.setMenu(BottomMenu.values[position]);
                 }
@@ -60,7 +61,7 @@ class _MainPageState extends State<MainPage> {
     required String label,
   }) {
     return BottomNavigationBarItem(
-      label: "$label",
+      label: label,
       icon: Padding(
         padding: const EdgeInsets.all(4.0),
         child: SvgPicture.asset(

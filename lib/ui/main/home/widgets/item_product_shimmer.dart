@@ -10,18 +10,18 @@ class ItemShimmerNewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 152.w,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: 162.h,
               child: Shimmer.fromColors(
-                baseColor: AppColors.shimmer_baseColor,
-                highlightColor: AppColors.shimmer_highlightColor,
+                baseColor: AppColors.shimmerBaseColor,
+                highlightColor: AppColors.shimmerHighlightColor,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
@@ -34,16 +34,16 @@ class ItemShimmerNewWidget extends StatelessWidget {
             SizedBox(
               height: 8.h,
             ),
-            Container(
+            SizedBox(
               width: 102.w,
               height: 22.h,
               child: Shimmer.fromColors(
-                baseColor: AppColors.shimmer_baseColor,
-                highlightColor: AppColors.shimmer_highlightColor,
+                baseColor: AppColors.shimmerBaseColor,
+                highlightColor: AppColors.shimmerHighlightColor,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
-                    color: Color(0xFFEFEDEF),
+                    color: const Color(0xFFEFEDEF),
                   ),
                 ),
               ),
@@ -51,11 +51,11 @@ class ItemShimmerNewWidget extends StatelessWidget {
             SizedBox(
               height: 4.h,
             ),
-            Container(
+            SizedBox(
               height: 22.h,
               child: Shimmer.fromColors(
-                baseColor: AppColors.shimmer_baseColor,
-                highlightColor: AppColors.shimmer_highlightColor,
+                baseColor: AppColors.shimmerBaseColor,
+                highlightColor: AppColors.shimmerHighlightColor,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),

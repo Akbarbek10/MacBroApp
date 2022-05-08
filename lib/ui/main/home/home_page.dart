@@ -22,7 +22,7 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.5,
-        title: Container(
+        title: SizedBox(
           width: 307.w,
           height: 44.h,
           child: TextFormField(
